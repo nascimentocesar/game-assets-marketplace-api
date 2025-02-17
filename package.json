@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start:dev": "ts-node ./src/bin/www.ts",
-    "start:prd": "NODE_ENV=production node ./dist/bin/www.js"
+    "start:development": "ts-node ./src/bin/www.ts",
+    "start:production": "node ./dist/bin/www.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
