@@ -1,0 +1,10 @@
+services:
+  express:
+    container_name: express
+    image: game-assets-marketplace-api:${NODE_ENV}
+    env_file: .env
+    build:
+      context: .
+      target: ${NODE_ENV}
+    ports:
+      - 3000:3000

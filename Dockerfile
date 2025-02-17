@@ -1,16 +1,17 @@
 FROM node:23-alpine AS base
 WORKDIR /app
-RUN corepack enable 
+RUN corepack enable
 COPY package.json pnpm-lock.yaml ./
-
-FROM base AS dev
 RUN pnpm install --frozen-lockfile
-COPY . .
-CMD ["pnpm", "start:dev"]
 
-FROM base AS prd
-RUN pnpm install -P --frozen-lockfile
+FROM base AS development
 COPY . .
-RUN pnpm build && rm -Rf ./src
-CMD ["pnpm", "start:prd"]
+CMD ["pnpm", "start:development"]
+
+FROM base AS production
+COPY ./src ./src
+COPY tsconfig.json ./
+RUN pnpm build
+RUN pnpm install -P --frozen-lockfile && rm -Rf ./src
+CMD ["pnpm", "start:production"]
 
