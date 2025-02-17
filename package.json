@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start:development": "ts-node ./src/bin/www.ts",
+    "start:development": "nodemon ./src/bin/www.ts",
     "start:production": "node ./dist/bin/www.js"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.4",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
