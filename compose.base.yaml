@@ -3,8 +3,31 @@ services:
     container_name: express
     image: game-assets-marketplace-api:${NODE_ENV}
     env_file: .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
     build:
       context: .
       target: ${NODE_ENV}
     ports:
       - 3000:3000
+    networks:
+      - postgres-express
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:17.3-alpine
+    env_file: .env
+    ports:
+      - 5432:5432
+    networks:
+      - postgres-express
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+networks:
+  postgres-express:
+
+volumes:
+  postgres:
