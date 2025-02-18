@@ -1,0 +1,4 @@
+services:
+  express:
+    deploy:
+      replicas: 2
