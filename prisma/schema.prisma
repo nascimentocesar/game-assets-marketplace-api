@@ -13,20 +13,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Asset {
+  id         String    @id @default(uuid())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  externalId String
+  expiresAt  DateTime?
+  metadata   Json
+  startsAt   DateTime?
+  game       Game      @relation(fields: [gameId], references: [id])
+  gameId     String
+  products   Product[]
+}
+
 model Game {
-  id        String    @id @default(uuid())
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   name      String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  products  Product[]
+  assets    Asset[]
 }
 
 model Product {
   id        String   @id @default(uuid())
-  game      Game     @relation(fields: [gameId], references: [id])
-  gameId    String
-  name      String
-  price     Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  price     Float
+  title     String
+  asset     Asset    @relation(fields: [assetId], references: [id])
+  assetId   String
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  imageUrl  String?
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+}
+
+model User {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  externalId String
+  profile    Profile?
 }

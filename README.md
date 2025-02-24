@@ -21,3 +21,13 @@ pnpm exec prisma migrate dev --name MIGRATION_NAME
 # starts prisma studio to inspect the database
 pnpm exec prisma studio
 ```
+
+## Project stack
+
+- Node.js
+- Express
+- GraphQL
+- PostgreSQL
+- nginx
+- Apollo server
+- Prisma
