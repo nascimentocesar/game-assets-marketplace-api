@@ -33,7 +33,7 @@ function createApolloServer(
   httpServer: http.Server<
     typeof http.IncomingMessage,
     typeof http.ServerResponse
-  >
+  >,
 ): ApolloServer {
   return new ApolloServer({
     typeDefs: typeDefs,
