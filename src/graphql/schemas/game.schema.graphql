@@ -1,0 +1,12 @@
+type Game {
+  id: ID!
+  createdAt: String!
+  updatedAt: String!
+  name: String!
+  assets: [Asset!]!
+}
+
+type Query {
+  games: [Game!]!
+  game(id: ID!): Game
+}
