@@ -1,0 +1,16 @@
+type Asset {
+  id: ID!
+  createdAt: String!
+  updatedAt: String!
+  externalId: String!
+  expiresAt: String
+  metadata: String
+  startsAt: String
+  game: Game!
+  products: [Product!]!
+}
+
+type Query {
+  assets: [Asset!]!
+  asset(id: ID!): Asset
+}
