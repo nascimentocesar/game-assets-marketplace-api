@@ -8,7 +8,7 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { AddressInfo } from "net";
-import schema from "../graphql";
+import { schema, schemaWithMocks } from "../graphql";
 
 const debug = debugLib("game-assets-marketplace-api:server");
 const port = normalizePort(process.env.PORT || "3000");
@@ -36,7 +36,7 @@ function createApolloServer(
   >,
 ): ApolloServer {
   return new ApolloServer({
-    schema: schema,
+    schema: process.env.NODE_ENV === "development" ? schemaWithMocks : schema,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 }

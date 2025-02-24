@@ -1,5 +1,6 @@
 import { loadFilesSync } from "@graphql-tools/load-files";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
+import { addMocksToSchema } from "@graphql-tools/mock";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import path from "path";
 
@@ -11,9 +12,9 @@ const resolvers = mergeResolvers(
   loadFilesSync(path.join(__dirname, "resolvers/**/*.resolvers.ts")),
 );
 
-const schema = makeExecutableSchema({
+export const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-export default schema;
+export const schemaWithMocks = addMocksToSchema({ schema });

@@ -17,6 +17,9 @@ importers:
       '@graphql-tools/merge':
         specifier: ^9.0.20
         version: 9.0.20(graphql@16.10.0)
+      '@graphql-tools/mock':
+        specifier: ^9.0.18
+        version: 9.0.18(graphql@16.10.0)
       '@graphql-tools/schema':
         specifier: ^10.0.19
         version: 10.0.19(graphql@16.10.0)
@@ -334,6 +337,12 @@ packages:
 
   '@graphql-tools/merge@9.0.20':
     resolution: {integrity: sha512-bJ+rudkkhYaiWzRV3vCyu6CD6bJsrBV1e+L4MOor7p5wSBQBAs8IAW05IktQq1RH1KPvyZ62z77P0/VsapnSKA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+
+  '@graphql-tools/mock@9.0.18':
+    resolution: {integrity: sha512-5dXHEXNq0o0iS8CxfSwTy870dfLiLaFmF0ZOyc3myepo9HPGoX+xn3yxLEQhE2fkH6qLbFYhhF7NJWSI8F2N+Q==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -750,6 +759,9 @@ packages:
   fast-glob@3.3.3:
     resolution: {integrity: sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==}
     engines: {node: '>=8.6.0'}
+
+  fast-json-stable-stringify@2.1.0:
+    resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
 
   fastq@1.19.0:
     resolution: {integrity: sha512-7SFSRCNjBQIZH/xZR3iy5iQYR8aGBE0h3VG6/cwlbrpdciNYBMotQav8c1XI3HjHH+NikUpP53nPdlZSdWmFzA==}
@@ -1463,6 +1475,14 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.8.1
 
+  '@graphql-tools/mock@9.0.18(graphql@16.10.0)':
+    dependencies:
+      '@graphql-tools/schema': 10.0.19(graphql@16.10.0)
+      '@graphql-tools/utils': 10.8.2(graphql@16.10.0)
+      fast-json-stable-stringify: 2.1.0
+      graphql: 16.10.0
+      tslib: 2.8.1
+
   '@graphql-tools/schema@10.0.19(graphql@16.10.0)':
     dependencies:
       '@graphql-tools/merge': 9.0.20(graphql@16.10.0)
@@ -1960,6 +1980,8 @@ snapshots:
       glob-parent: 5.1.2
       merge2: 1.4.1
       micromatch: 4.0.8
+
+  fast-json-stable-stringify@2.1.0: {}
 
   fastq@1.19.0:
     dependencies:
