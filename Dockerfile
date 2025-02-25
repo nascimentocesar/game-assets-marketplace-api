@@ -5,15 +5,15 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY ./prisma ./prisma
 RUN pnpm exec prisma generate
+COPY ./src ./src
 
 FROM base AS development
-COPY . .
 CMD ["pnpm", "start:development"]
 
 FROM base AS production
-COPY ./src ./src
 COPY tsconfig.json ./
 RUN pnpm build
-RUN pnpm install -P --frozen-lockfile && rm -Rf ./src
+RUN pnpm install -P --frozen-lockfile \
+  && rm -Rf ./src \
+  && rm tsconfig.json pnpm-lock.yaml
 CMD ["pnpm", "start:production"]
-
