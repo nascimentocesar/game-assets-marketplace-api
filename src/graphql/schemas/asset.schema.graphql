@@ -2,8 +2,8 @@ type Asset {
   id: ID!
   createdAt: String!
   updatedAt: String!
-  externalId: String!
   expiresAt: String
+  externalId: String!
   metadata: String
   startsAt: String
   game: Game!
