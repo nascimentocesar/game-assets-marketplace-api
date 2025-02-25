@@ -17,4 +17,7 @@ export const schema = makeExecutableSchema({
   resolvers,
 });
 
-export const schemaWithMocks = addMocksToSchema({ schema });
+export const schemaWithMocks = addMocksToSchema({
+  schema,
+  preserveResolvers: true,
+});
