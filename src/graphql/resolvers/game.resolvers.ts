@@ -1,10 +1,21 @@
+import { createGame, findGame } from "../../services/game.service";
+import {
+  Game,
+  GameMutationResponse,
+  MutationCreateGameArgs,
+} from "../generated/resolvers-types";
+import { CreateGameSchema } from "../../validation/game.schema";
+
 const gameResolvers = {
   Query: {
-    games: () => {
-      return [];
-    },
-    game: (id: string) => {
-      return { id: "100" };
+    game: (id: string): Promise<Game> => findGame(id),
+  },
+  Mutation: {
+    createGame: async (
+      _: any,
+      { input }: MutationCreateGameArgs,
+    ): Promise<GameMutationResponse> => {
+      return createGame(CreateGameSchema.parse(input));
     },
   },
 };
