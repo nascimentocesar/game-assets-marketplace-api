@@ -1,12 +1,20 @@
 type Game {
   id: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String!
   assets: [Asset!]!
 }
 
 type Query {
-  games: [Game!]!
+  games(ids: [ID!]): [Game!]!
   game(id: ID!): Game
+}
+
+type Mutation {
+  createGame(input: CreateGameInput!): Game!
+}
+
+input CreateGameInput {
+  name: String!
 }

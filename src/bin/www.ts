@@ -4,6 +4,7 @@ import { AddressInfo } from "net";
 import { createApolloServer } from "../infrastructure/apollo";
 import { applicationDebug } from "../infrastructure/debug";
 import { createExpressApp } from "../infrastructure/express";
+import { applicationContext } from "../infrastructure/graphql";
 
 const port = normalizePort(process.env.PORT || "3000");
 
@@ -16,7 +17,12 @@ async function startServer() {
 
   await apolloServer.start();
 
-  expressApp.use("/", expressMiddleware(apolloServer));
+  expressApp.use(
+    "/",
+    expressMiddleware(apolloServer, {
+      context: async () => applicationContext,
+    }),
+  );
 
   httpServer.on("error", onError);
   httpServer.on("listening", () => onListening(httpServer.address()));
