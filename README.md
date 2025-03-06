@@ -30,6 +30,11 @@ POSTGRES_HOST=localhost prisma migrate dev --name MIGRATION_NAME
 POSTGRES_HOST=localhost pnpm exec prisma studio
 ```
 
+```sh
+# generates GraphQL types after schema modifications
+pnpm graphql:generate
+```
+
 ## Project stack
 
 - Node.js

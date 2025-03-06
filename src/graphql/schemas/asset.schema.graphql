@@ -1,16 +1,28 @@
 type Asset {
   id: ID!
-  createdAt: String!
-  updatedAt: String!
-  expiresAt: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  expiresAt: DateTime
   externalId: String!
-  metadata: String
-  startsAt: String
+  metadata: JSON!
+  startsAt: DateTime
   game: Game!
   products: [Product!]!
 }
 
 type Query {
-  assets: [Asset!]!
+  assets(ids: [ID!]): [Asset!]!
   asset(id: ID!): Asset
+}
+
+type Mutation {
+  createAsset(input: CreateAssetInput!): Asset!
+}
+
+input CreateAssetInput {
+  expiresAt: DateTime
+  externalId: String!
+  gameId: ID!
+  metadata: JSON!
+  startsAt: DateTime
 }

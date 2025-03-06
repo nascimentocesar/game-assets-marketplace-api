@@ -7,6 +7,15 @@ type Profile {
 }
 
 type Query {
-  profiles: [Profile!]!
+  profiles(ids: [ID!]): [Profile!]!
   profile(id: ID!): Profile
+}
+
+type Mutation {
+  createProfile(input: CreateProfileInput!): Profile!
+}
+
+input CreateProfileInput {
+  name: String!
+  imageUrl: String
 }

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc && cpx src/**/*.graphql dist/",
+    "graphql:generate": "graphql-codegen",
     "start:development": "nodemon ./src/bin/www.ts",
     "start:production": "node ./dist/bin/www.js"
   },
@@ -16,6 +17,7 @@
     "@prisma/client": "^6.3.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
+    "dataloader": "^2.2.3",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "graphql": "^16.10.0",
@@ -23,6 +25,8 @@
   },
   "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/typescript-resolvers": "^4.4.4",
     "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.17",
     "@types/debug": "^4.1.12",
@@ -31,6 +35,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.4",
     "cpx": "^1.5.0",
+    "graphql-scalars": "^1.24.1",
     "nodemon": "^3.1.9",
     "prettier": "^3.5.2",
     "prettier-plugin-prisma": "^5.0.0",

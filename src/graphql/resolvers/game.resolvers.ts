@@ -1,12 +1,44 @@
-const gameResolvers = {
+import { ApplicationContext } from "../../infrastructure/graphql";
+import { prismaClient } from "../../infrastructure/prisma";
+import {
+  MutationCreateGameArgs,
+  QueryGameArgs,
+  QueryGamesArgs,
+} from "../generated/resolvers-types";
+
+const gamesResolver = {
   Query: {
-    games: () => {
-      return [];
+    game: async (
+      _parent: any,
+      { id }: QueryGameArgs,
+      { dataLoaders }: ApplicationContext,
+    ) => dataLoaders.games.load(id),
+    games: async (
+      _parent: any,
+      { ids }: QueryGamesArgs,
+      { dataLoaders }: ApplicationContext,
+    ) => (ids ? dataLoaders.games.loadMany(ids) : prismaClient.game.findMany()),
+  },
+  Mutation: {
+    createGame: async (
+      _parent: any,
+      { input }: MutationCreateGameArgs,
+      { dataLoaders }: ApplicationContext,
+    ) => {
+      const game = await prismaClient.game.create({
+        data: input,
+      });
+
+      return dataLoaders.games.load(game.id);
     },
-    game: (id: string) => {
-      return { id: "100" };
-    },
+  },
+  Game: {
+    assets: async (
+      game: any,
+      _args: any,
+      { dataLoaders }: ApplicationContext,
+    ) => dataLoaders.assetsByGame.load(game.id),
   },
 };
 
-export default gameResolvers;
+export default gamesResolver;

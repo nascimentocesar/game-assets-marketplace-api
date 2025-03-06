@@ -8,6 +8,16 @@ type Product {
 }
 
 type Query {
-  products: [Product!]!
+  products(ids: [ID!]): [Product!]!
   product(id: ID!): Product
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product!
+}
+
+input CreateProductInput {
+  assetId: ID!
+  price: Float!
+  title: String!
 }
