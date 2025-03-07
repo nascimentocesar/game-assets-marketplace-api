@@ -1,5 +1,6 @@
 import { ApplicationContext } from "../../infrastructure/graphql";
 import { prismaClient } from "../../infrastructure/prisma";
+import { CreateProduct } from "../../validation/schemas/product.schemas";
 import {
   MutationCreateProductArgs,
   QueryProductArgs,
@@ -28,8 +29,10 @@ const productResolvers = {
       { input }: MutationCreateProductArgs,
       { dataLoaders }: ApplicationContext,
     ) => {
+      const parsedData = CreateProduct.parse(input);
+
       const product = await prismaClient.product.create({
-        data: input,
+        data: parsedData,
       });
 
       return dataLoaders.products.load(product.id);

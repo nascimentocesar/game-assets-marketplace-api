@@ -1,5 +1,6 @@
 import { ApplicationContext } from "../../infrastructure/graphql";
 import { prismaClient } from "../../infrastructure/prisma";
+import { CreateGame } from "../../validation/schemas/game.schemas";
 import {
   MutationCreateGameArgs,
   QueryGameArgs,
@@ -25,8 +26,10 @@ const gamesResolver = {
       { input }: MutationCreateGameArgs,
       { dataLoaders }: ApplicationContext,
     ) => {
+      const parsedData = CreateGame.parse(input);
+
       const game = await prismaClient.game.create({
-        data: input,
+        data: parsedData,
       });
 
       return dataLoaders.games.load(game.id);

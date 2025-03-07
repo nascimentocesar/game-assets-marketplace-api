@@ -18,6 +18,12 @@ export NODE_ENV=production && docker compose -f compose.base.yaml -f "compose.${
 POSTGRES_HOST=localhost pnpm prisma migrate dev
 ```
 
+4. Access GraphQL API (running in port 80 via nginx)
+
+```
+http://localhost/
+```
+
 ## General commands
 
 ```sh

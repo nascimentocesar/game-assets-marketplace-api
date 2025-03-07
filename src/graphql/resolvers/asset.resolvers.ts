@@ -1,5 +1,6 @@
 import { ApplicationContext } from "../../infrastructure/graphql";
 import { prismaClient } from "../../infrastructure/prisma";
+import { CreateAsset } from "../../validation/schemas/asset.schemas";
 import {
   MutationCreateAssetArgs,
   QueryAssetArgs,
@@ -26,8 +27,10 @@ const assetResolvers = {
       { input }: MutationCreateAssetArgs,
       { dataLoaders }: ApplicationContext,
     ) => {
+      const parsedData = CreateAsset.parse(input);
+
       const asset = await prismaClient.asset.create({
-        data: input,
+        data: parsedData,
       });
 
       return dataLoaders.assets.load(asset.id);
