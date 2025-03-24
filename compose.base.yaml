@@ -16,7 +16,6 @@ services:
       - postgres
 
   nginx:
-    container_name: nginx
     image: nginx:1.27-alpine
     restart: always
     ports:
@@ -29,7 +28,6 @@ services:
       - nginx-express
 
   postgres:
-    container_name: postgres
     image: postgres:17.3-alpine
     env_file: .env
     ports:

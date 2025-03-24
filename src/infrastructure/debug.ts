@@ -1,3 +1,3 @@
 import debug from "debug";
 
-export const applicationDebug = debug("game-assets-marketplace-api:server");
+export const applicationDebug = debug(`${process.env.DEBUG}`);

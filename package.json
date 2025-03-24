@@ -4,6 +4,10 @@
   "private": true,
   "scripts": {
     "build": "tsc && cpx src/**/*.graphql dist/",
+    "container:down": "docker compose -f compose.base.yaml -f compose.${NODE_ENV:-development}.yaml down -v",
+    "container:up": "docker compose -f compose.base.yaml -f compose.${NODE_ENV:-development}.yaml up -d --build",
+    "container:exec": "docker exec -it $(docker ps -aqf name=game-assets-marketplace-api-express | head -n 1)",
+    "db:migrate": "prisma migrate dev",
     "graphql:generate": "graphql-codegen",
     "start:development": "nodemon ./src/bin/www.ts",
     "start:production": "node ./dist/bin/www.js"
@@ -21,7 +25,9 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "graphql": "^16.10.0",
+    "graphql-scalars": "^1.24.2",
     "morgan": "~1.9.1",
+    "prisma": "^6.5.0",
     "zod": "^3.24.2"
   },
   "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
@@ -36,12 +42,10 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.4",
     "cpx": "^1.5.0",
-    "graphql-scalars": "^1.24.1",
     "nodemon": "^3.1.9",
     "prettier": "^3.5.2",
     "prettier-plugin-prisma": "^5.0.0",
     "prettier-plugin-sh": "^0.15.0",
-    "prisma": "^6.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },

@@ -15,5 +15,5 @@ COPY tsconfig.json ./
 RUN pnpm build
 RUN pnpm install -P --frozen-lockfile \
   && rm -Rf ./src \
-  && rm tsconfig.json pnpm-lock.yaml
+  && rm tsconfig.json
 CMD ["pnpm", "start:production"]
