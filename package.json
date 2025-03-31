@@ -4,13 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc && cpx src/**/*.graphql dist/",
-    "container:down": "docker compose -f compose.base.yaml -f compose.${NODE_ENV:-development}.yaml down -v",
-    "container:up": "docker compose -f compose.base.yaml -f compose.${NODE_ENV:-development}.yaml up -d --build",
-    "container:exec": "docker exec -it $(docker ps -aqf name=game-assets-marketplace-api-express | head -n 1)",
-    "db:migrate": "prisma migrate dev",
-    "graphql:generate": "graphql-codegen",
-    "start:development": "nodemon ./src/bin/www.ts",
-    "start:production": "node ./dist/bin/www.js"
+    "start": "nodemon ./src/bin/www.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.11.3",

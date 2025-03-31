@@ -1,17 +1,17 @@
 services:
   express:
-    image: game-assets-marketplace-api:${NODE_ENV}
+    image: game-assets-marketplace-api
     env_file: .env
-    environment:
-      - NODE_ENV=${NODE_ENV}
     build:
       context: .
-      target: ${NODE_ENV}
     expose:
       - "3000"
     networks:
       - nginx-express
       - postgres-express
+    volumes:
+      - .:/app
+      - /app/node_modules
     depends_on:
       - postgres
 

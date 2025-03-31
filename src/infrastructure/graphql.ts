@@ -47,8 +47,3 @@ export const schema = makeExecutableSchema({
     JSON: JSONResolver,
   },
 });
-
-export const schemaWithMocks = addMocksToSchema({
-  schema,
-  preserveResolvers: true,
-});

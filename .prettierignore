@@ -1,4 +1,5 @@
 dist/
 node_modules/
 prisma/migrations/**/*
+codegen.ts
 pnpm-lock.yaml
