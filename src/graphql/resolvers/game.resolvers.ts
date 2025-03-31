@@ -1,6 +1,6 @@
 import { ApplicationContext } from "../../infrastructure/graphql";
 import { prismaClient } from "../../infrastructure/prisma";
-import { CreateGame } from "../../validation/schemas/game.schemas";
+import { CreateGame } from "../../schemas/game.schemas";
 import {
   MutationCreateGameArgs,
   QueryGameArgs,

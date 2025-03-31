@@ -1,6 +1,6 @@
 import { ApplicationContext } from "../../infrastructure/graphql";
 import { prismaClient } from "../../infrastructure/prisma";
-import { CreateAsset } from "../../validation/schemas/asset.schemas";
+import { CreateAsset } from "../../schemas/asset.schemas";
 import {
   MutationCreateAssetArgs,
   QueryAssetArgs,

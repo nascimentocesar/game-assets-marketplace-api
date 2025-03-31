@@ -1,6 +1,6 @@
 import { ApplicationContext } from "../../infrastructure/graphql";
 import { prismaClient } from "../../infrastructure/prisma";
-import { CreateProduct } from "../../validation/schemas/product.schemas";
+import { CreateProduct } from "../../schemas/product.schemas";
 import {
   MutationCreateProductArgs,
   QueryProductArgs,

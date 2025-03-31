@@ -1,5 +1,6 @@
 dist/
 node_modules/
 prisma/migrations/**/*
+src/graphql/generated/resolvers-types.ts
 codegen.ts
 pnpm-lock.yaml

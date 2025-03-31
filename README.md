@@ -3,6 +3,7 @@
 - Apollo Server
 - Express
 - GraphQL
+- Jest
 - nginx
 - Node.js
 - PostgreSQL
@@ -13,6 +14,19 @@
 ```sh
 # creates docker containers and start the application
 ./bootstrap.sh
+```
+
+## Setup test environment
+
+```sh
+# creates .env.test file from .env.example
+cp .env.example .env.test
+
+# applies migrations to the test database
+pnpm dotenvx run -f .env.test -- prisma migrate dev
+
+# runs tests
+pnpm test
 ```
 
 ## Frequently used commands
