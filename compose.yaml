@@ -1,21 +1,43 @@
 services:
-  express:
+  express: &express
     image: game-assets-marketplace-api
-    env_file:
-      - .env
     build:
       context: .
-    expose:
-      - "3000"
     networks:
-      - nginx-express
       - postgres-express
+    depends_on:
+      - postgres
+    profiles: ["none"]
+
+  express-dev:
+    <<: *express
+    build:
+      target: dev
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
     volumes:
       - ./src:/app/src
       - ./prisma:/app/prisma
       - /app/node_modules
-    depends_on:
-      - postgres
+    profiles: ["dev"]
+
+  express-prd:
+    <<: *express
+    build:
+      target: prd
+    environment:
+      - NODE_ENV=production
+    networks:
+      - nginx-express
+    profiles: ["prd"]
+
+  express-test:
+    <<: *express
+    build:
+      target: test
+    profiles: ["test"]
 
   nginx:
     image: nginx:1.27-alpine
@@ -28,17 +50,20 @@ services:
       - express
     networks:
       - nginx-express
+    profiles: ["prd"]
 
   postgres:
     image: postgres:17.3-alpine
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - 5432:5432
     networks:
       - postgres-express
     volumes:
       - postgres:/var/lib/postgresql/data
+    profiles: ["dev", "prd", "test"]
 
 networks:
   nginx-express:
