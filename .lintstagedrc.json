@@ -1,0 +1,6 @@
+{
+  "*": [
+    "prettier --write",
+    "pnpm test --bail --findRelatedTests --passWithNoTests"
+  ]
+}

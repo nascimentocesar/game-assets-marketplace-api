@@ -16,6 +16,3 @@ RUN pnpm install -P --frozen-lockfile \
   && rm -Rf ./src \
   && rm tsconfig.json
 CMD ["node", "./src/bin/www.ts"]
-
-FROM build AS test
-CMD ["pnpm", "jest"]

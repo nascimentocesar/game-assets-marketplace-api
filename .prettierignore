@@ -1,6 +1,9 @@
+.husky/
 dist/
 node_modules/
 prisma/migrations/**/*
 src/graphql/generated/resolvers-types.ts
+.env
+.env.*
 codegen.ts
 pnpm-lock.yaml

@@ -33,12 +33,6 @@ services:
       - nginx-express
     profiles: ["prd"]
 
-  express-test:
-    <<: *express
-    build:
-      target: test
-    profiles: ["test"]
-
   nginx:
     image: nginx:1.27-alpine
     restart: always
